@@ -10,7 +10,7 @@ RUN pacman -Syu --noconfirm python3 python-pip nodejs npm xsel git neovim && \
     python3 -m pip install pynvim neovim && \
     npm install -g neovim && \
     useradd -m ${USER} && \
-    mkdir /home/bootjp/.local && \
+    mkdir /home/${USER}/.local && \
     chown ${USER}:${USER} -R $HOME
 
 USER ${USER}
