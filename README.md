@@ -7,11 +7,12 @@
 
 ## how to use
 
-### run of this container
+### using this container image
 
 ```bash
 docker run -it --rm -v ${PWD}:/home/bootjp/src/any_project \
- bootjp/nvim-container-image:latest bash
+  -v ~/.ssh/:/home/bootjp/.ssh/ \
+  bootjp/nvim-container-image:latest bash
 ```
 
 ### build and publish
