@@ -1,4 +1,4 @@
-FROM archlinux:base-devel
+FROM archlinux:base
 
 ENV DISPLAY :0
 ENV USER bootjp
@@ -7,17 +7,22 @@ ENV SHELL /bin/bash
 ENV TERM xterm-256color
 
 
-# glibc bug fix
-RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst \
-    && curl -LO "https://raw.githubusercontent.com/sickcodes/Docker-OSX/master/${patched_glibc}" \
-    && bsdtar -C / -xvf "${patched_glibc}" || echo "Everything is fine."
+# mac os glibc bug fix
+# RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst \
+#    && curl -LO "https://raw.githubusercontent.com/sickcodes/Docker-OSX/master/${patched_glibc}" \
+#    && bsdtar -C / -xvf "${patched_glibc}" || echo "Everything is fine."
+
+COPY ./mirrorlist /etc/pacman.d/mirrorlist
 
 RUN pacman -Syu --noconfirm python3 python-pip nodejs npm xsel git neovim openssh && \
     python3 -m pip install pynvim neovim && \
     npm install -g neovim && \
     useradd -m ${USER} && \
     mkdir /home/${USER}/.local && \
-    chown ${USER}:${USER} -R $HOME
+    chown ${USER}:${USER} -R $HOME && \
+    rm -rf /var/cache && \
+    rm -rf $HOME/.cache && \
+    rm -rf $HOME/.npm
 
 USER ${USER}
 
