@@ -19,4 +19,4 @@ jobs:
         run: docker build -t ghcr.io/bootjp/nvim-container:latest .
 
       - name: push the Docker image
-        run: docker build -t ghcr.io/bootjp/nvim-containe:latest .
+        run: docker push ghcr.io/bootjp/nvim-container:latest
