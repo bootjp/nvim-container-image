@@ -2,19 +2,21 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --t nvim-container-image:latest
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Build the Docker image
+        run: docker build -t ghcr.io/bootjp/nvim-container:latest .
+
+      - name: push the Docker image
+        run: docker build -t ghcr.io/bootjp/nvim-containe:latest .
