@@ -18,5 +18,12 @@ jobs:
       - name: Build the Docker image
         run: docker build -t ghcr.io/bootjp/nvim-container:latest .
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
       - name: push the Docker image
         run: docker push ghcr.io/bootjp/nvim-container:latest
