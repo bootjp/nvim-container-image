@@ -12,12 +12,13 @@
 ```bash
 docker run -it --rm -v ${PWD}:/home/bootjp/src/any_project \
   -v ~/.ssh/:/home/bootjp/.ssh/ \
-  bootjp/nvim-container-image:latest bash
+  ghcr.io/bootjp/nvim-container:latest bash
 ```
 
 ### build and publish
 
 ```bash
-docker build -t bootjp/nvim-container-image:latest .
-docker push bootjp/nvim-container-image:latest
+docker build -t ghcr.io/bootjp/nvim-container:latest .
+
+# push is automation build
 ```
